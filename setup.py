@@ -12,7 +12,7 @@ core_module = Extension(
     library_dirs=['/usr/lib/x86_64-linux-gnu/'],
     extra_compile_args=['-std=c++11', '-O2', '-Wall'],
     extra_link_args=['-Wl,--export-dynamic'],
-    sources=['pyedmond/_core.cpp']
+    sources=['pyedmond/_core.cpp', 'pyedmond/edmonds_optimum_branching.hpp']
 )
 
 setup(name='pyedmond',
