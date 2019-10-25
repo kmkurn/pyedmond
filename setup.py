@@ -1,17 +1,22 @@
 # from distutils.core import setup, Extension
 import os
+import sys
 from setuptools import setup, Extension
 
 os.environ["CC"] = "g++"
 os.environ["CXX"] = "g++"
 
+extra_link_args = []
+if sys.platform.startswith('linux'):
+    extra_link_args.append('-Wl,--export-dynamic')
+
 core_module = Extension(
     'pyedmond/_core',
-    include_dirs=['/usr/include/python3.5/'],
+    #include_dirs=['/usr/include/python3.5/'],
     libraries=['boost_python', 'boost_graph'],
-    library_dirs=['/usr/lib/x86_64-linux-gnu/'],
+    #library_dirs=['/usr/lib/x86_64-linux-gnu/'],
     extra_compile_args=['-std=c++11', '-O2', '-Wall'],
-    extra_link_args=['-Wl,--export-dynamic'],
+    extra_link_args=extra_link_args,
     sources=['pyedmond/_core.cpp']
 )
 
