@@ -1,8 +1,7 @@
 import time
 import numpy as np
 import networkx as nx
-from graph_tool.generation import complete_graph
-from pyedmond._core import build_graph, minimum_branching
+from pyedmond import find_minimum_branching
 
 
 def make_graph(n=100, graph_type='graph_tool'):
@@ -13,7 +12,7 @@ def make_graph(n=100, graph_type='graph_tool'):
     elif graph_type == 'networkx':
         g = nx.complete_graph(n, create_using=nx.DiGraph())
         weights = np.abs(np.random.rand(g.number_of_edges()))
-        for k, (i, j) in enumerate(g.edges_iter()):
+        for k, (i, j) in enumerate(g.edges):
             g[i][j]['weight'] = weights[k]
         return g
 
@@ -21,14 +20,10 @@ def make_graph(n=100, graph_type='graph_tool'):
 def test_pyedmond(n):
     """return the number of seconds required to run the algorithm
     """
-    g, weights = make_graph(n, 'graph_tool')
-    edge_and_weights = [(e[0], e[1], w)
-                        for e, w in zip(g.get_edges(), weights)]
-
-    g = build_graph(g.num_vertices(), edge_and_weights)
+    g = make_graph(n, 'networkx')
 
     s = time.time()
-    minimum_branching(g, [])
+    find_minimum_branching(g, [])
     return time.time() - s
 
 
