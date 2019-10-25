@@ -1,7 +1,6 @@
-# from distutils.core import setup, Extension
 import os
 import sys
-from setuptools import setup, Extension
+from setuptools import find_packages, setup, Extension
 
 os.environ["CC"] = "g++"
 os.environ["CXX"] = "g++"
@@ -15,18 +14,16 @@ core_module = Extension(
     libraries=['boost_python', 'boost_graph'],
     extra_compile_args=['-std=c++11', '-O2', '-Wall'],
     extra_link_args=extra_link_args,
-    sources=['pyedmond/_core.cpp']
-)
+    sources=['pyedmond/_core.cpp'])
 
-setup(name='pyedmond',
-      version='0.1',
-      description='Edmond optimal branching algorithm in C++ wrapped by Python',
-      url='http://github.com/xiaohan2012/pyedmond',
-      author='Han Xiao',
-      author_email='xiaohan2012@gmail.com',
-      license='MIT',
-      packages=['pyedmond'],
-      ext_modules=[core_module],
-      setup_requires=['pytest-runner'],
-      tests_require=['pytest']
-)
+setup(
+    name='pyedmond',
+    version='0.1',
+    description='Edmond optimal branching algorithm in C++ wrapped by Python',
+    url='http://github.com/kmkurn/pyedmond',
+    author='Kemal Kurniawan',
+    author_email='kemal@kkurniawan.com',
+    license='MIT',
+    packages=find_packages(),
+    ext_modules=[core_module],
+    python_requires='>=3.7,<4')
