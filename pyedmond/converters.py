@@ -37,7 +37,7 @@ def nx2edges_and_weights(g, weight='weight'):
     """
     assert isinstance(g, nx.DiGraph)
     return [(e[0], e[1], g[e[0]][e[1]][weight])
-            for e in g.edges_iter()]
+            for e in g.edges]
 
 
 def from_gt(g, weights):
