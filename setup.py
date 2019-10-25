@@ -12,9 +12,7 @@ if sys.platform.startswith('linux'):
 
 core_module = Extension(
     'pyedmond/_core',
-    #include_dirs=['/usr/include/python3.5/'],
     libraries=['boost_python', 'boost_graph'],
-    #library_dirs=['/usr/lib/x86_64-linux-gnu/'],
     extra_compile_args=['-std=c++11', '-O2', '-Wall'],
     extra_link_args=extra_link_args,
     sources=['pyedmond/_core.cpp']
