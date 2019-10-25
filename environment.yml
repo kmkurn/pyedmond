@@ -1,0 +1,10 @@
+name: pyedmond
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - boost=1.70.0
+  - graph-tool=2.29
+  - numpy=1.17.3
+  - pytest=5.2.2
+  - python=3.7.3
