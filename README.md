@@ -1,53 +1,31 @@
 # pyedmond
 
-Edmond's optimal branching algorithm in C++ wrapped by Python.
+Edmond's optimal branching algorithm in C++ wrapped by Python. Original version is from https://github.com/xiaohan2012/pyedmond.
 
-As it's in C++ internally, it's faster and more memory-efficient than [networkx.maximum_spanning_arborescence](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.algorithms.tree.branchings.maximum_spanning_arborescence.html)
+As it's in C++ internally, it's faster and more memory-efficient than that of [NetworkX](https://networkx.github.io/).
 
-# Example usage
+# Example
 
 ```python
 import numpy as np
-import networkx as nx
 from pyedmond import find_minimum_branching
 
-g = nx.complete_graph(10, create_using=nx.DiGraph())
-weights = np.abs(np.random.rand(g.number_of_edges()))
-for k, (i, j) in enumerate(g.edges_iter()):
-    g[i][j]['weight'] = weights[k]
+n_nodes, edges = 10, []
+weights = np.abs(np.random.rand(n_nodes, n_nodes))
+for u in range(n_nodes):
+    for v in range(n_nodes):
+        if u != v:
+            edges.append((u, v, weights[u, v]))
 
-edges = find_minimum_branching(g, roots=[0, 1])  # returns a list of (int, int) edges
+edges = find_minimum_branching(n_nodes, edges, roots=[0, 1])  # returns a list of (int, int) edges
 ```
 
 # Installation
 
-    pip3 install pyedmond
+    pip install git+https://github.com/kmkurn/pyedmond.git#egg=pyedmond
 
-# Test
+# License
 
-    python3 setup.py test
+MIT
 
-# notes on code
-
-## `_core.cpp`
-
-the interface between python and edmonds algorithm
-
-## Main classes/functions
-
-- `Graph`: the graph type
-- `build_graph`: build graph from a list of edges and weights
-- `optimal_branching`: find the optimal branching (used internally, need to convert the graph by yourself)
-- `find_optimal_branching`: higher level function (graph is converted automatically)
-
-
-# Todo
-
-- [X] setup.py
-- [X] usage documentation
-- [ ] test coverage
-- [ ] benchmark plot
-
-# Reference
-
-the C++ part is based on [atofigh/edmonds-alg](https://github.com/atofigh/edmonds-alg)
+Copyright (c) 2017 Han Xiao, 2019 Kemal Kurniawan.
