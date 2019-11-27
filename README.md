@@ -20,6 +20,10 @@ for u in range(n_nodes):
 edges = find_minimum_branching(n_nodes, edges, roots=[0, 1])  # returns a list of (int, int) edges
 ```
 
+# Requirements
+
+[Boost](https://www.boost.org/) 1.34 or later
+
 # Installation
 
     pip install git+https://github.com/kmkurn/pyedmond.git#egg=pyedmond
