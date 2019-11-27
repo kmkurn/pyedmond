@@ -22,7 +22,8 @@ edges = find_minimum_branching(n_nodes, edges, roots=[0, 1])  # returns a list o
 
 # Requirements
 
-[Boost](https://www.boost.org/) 1.34 or later
+- [Boost](https://www.boost.org/) 1.34 or later
+- Python 3.7 or later
 
 # Installation
 
